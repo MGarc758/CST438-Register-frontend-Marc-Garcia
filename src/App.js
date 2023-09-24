@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import StudentHome from './components/StudentHome';
 import AdminHome from './components/AdminHome';
+import EditStudent from './components/EditStudent';
 import ShowSchedule from './components/ShowSchedule';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Link to="/admin">Admin</Link>{' '}
             <Switch>
               <Route exact path="/" component={StudentHome} />
+              <Route path="/edit/:parameter" component={EditStudent} />
               <Route path="/schedule" component={ShowSchedule} />
               <Route path="/admin" component={AdminHome} />
               <Route render={ () => <h1>Page not found</h1>} />
