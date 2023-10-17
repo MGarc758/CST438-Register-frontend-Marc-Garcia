@@ -61,7 +61,7 @@ const EditStudent = (props)  => {
                 
                 <label> Email: </label> <br></br>
                 <input type="text" id="email" name="email" value={student.email} onChange={handleInputChange}></input>
-                <button type="submit" > Update Student </button>
+                <button id="submitButton" type="submit" > Update Student </button>
             </form>
         </div>                       
     )

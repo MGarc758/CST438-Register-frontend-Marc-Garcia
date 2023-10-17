@@ -80,10 +80,10 @@ const AdminHome = ()  => {
         <tbody>
           {students.map(student => (
             <tr key={student.id}>
-              <td><button onClick={() => onEditClick(student.email)}> Edit </button></td>
-              <td>{student.name}</td>
-              <td>{student.email}</td>
-              <td><button onClick={() => onDeleteClick(student.id)}> Delete </button></td>
+              <td><button id={student.name + " button"} onClick={() => onEditClick(student.email)}> Edit </button></td>
+              <td id={student.name}>{student.name}</td>
+              <td id={student.email}>{student.email}</td>
+              <td><button id={student.name + " delete"} onClick={() => onDeleteClick(student.id)}> Delete </button></td>
             </tr>
           ))}
         </tbody>
@@ -95,7 +95,7 @@ const AdminHome = ()  => {
           Name: <input type="text" id="name" name="name" onChange={handleInputChange} placeholder='Enter name here' ></input>
           <br></br>
           Email: <input type="text" id="email" name="email" onChange={handleInputChange} placeholder='Enter email here' ></input>
-        <button type="submit"> Add Student </button>
+          <button id='addStudentButton' type="submit"> Add Student </button>
       </form>
     </div>
     );
