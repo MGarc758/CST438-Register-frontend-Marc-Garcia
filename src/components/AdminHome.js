@@ -6,6 +6,8 @@ const AdminHome = ()  => {
     const [students, setStudents] = useState([]);
     const [newStudent, setNewStudent] = useState({name:"", email:""});
 
+    const jwtToken = sessionStorage.getItem('jwt');
+
     useEffect(() => {
         // called once after intial render
         fetchStudents();
@@ -13,7 +15,11 @@ const AdminHome = ()  => {
 
 
     const fetchStudents = () => {
-      fetch('http://localhost:8080/students')
+      fetch('http://localhost:8080/students', {
+        headers: {
+          'Authorization': jwtToken
+        }
+      })
       .then(response => response.json())
       .then(data => {
         setStudents(data);
@@ -28,6 +34,9 @@ const AdminHome = ()  => {
     const onDeleteClick =async (id) => {
       await fetch (`http://localhost:8080/student/${id}`, 
         {
+          headers: {
+            'Authorization': jwtToken
+          },
           method: 'DELETE',
         })
         .then(response => {
@@ -46,6 +55,9 @@ const AdminHome = ()  => {
 
       await fetch (`http://localhost:8080/students/add/${newStudent.name}/${newStudent.email}`, 
         {
+          headers: {
+            'Authorization': jwtToken
+          },
           method: 'POST',
         })
         .then(response => {

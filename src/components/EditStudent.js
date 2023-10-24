@@ -7,6 +7,8 @@ const EditStudent = (props)  => {
     const history = useHistory();
     const [student, setStudent] = useState({id: -1, name: "", email: "", status: null, status_code: -1});
 
+    const jwtToken = sessionStorage.getItem('jwt');
+
     useEffect(() => {
         // called once after intial render
         fetchStudent();
@@ -14,7 +16,11 @@ const EditStudent = (props)  => {
 
 
     const fetchStudent = () => {
-      fetch(`http://localhost:8080/student?email=${parameter}`)
+      fetch(`http://localhost:8080/student?email=${parameter}`, {
+        headers: {
+            'Authorization': jwtToken
+          }
+      })
       .then(response => response.json())
       .then(data => {
         setStudent(data);
@@ -29,6 +35,7 @@ const EditStudent = (props)  => {
         {
           method: 'PUT',
           headers: {
+            'Authorization': jwtToken,
             'Content-Type': 'application/json',
           }, 
           body: JSON.stringify(student)
